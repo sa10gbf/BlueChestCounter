@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>48456.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="bluechest.jpg" />
+    <None Remove="bluechest.png" />
+    <None Remove="bluechest_xmark.jpg" />
+    <None Remove="blue_chest.png" />
+    <None Remove="coronation_ring.png" />
+    <None Remove="Coronation_Ring_square.jpg" />
+    <None Remove="Gold_Brick.png" />
+    <None Remove="hihi.png" />
+    <None Remove="intricacy_ring.png" />
+    <None Remove="Intricacy_Ring_square.jpg" />
+    <None Remove="lineage_ring.png" />
+    <None Remove="Lineage_Ring_square.jpg" />
+    <None Remove="nobluechest.jpg" />
+    <None Remove="no_blue_chest.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="48456.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="bluechest.jpg" />
+    <Resource Include="bluechest.png" />
+    <Resource Include="bluechest_xmark.jpg" />
+    <Resource Include="blue_chest.png" />
+    <Resource Include="coronation_ring.png" />
+    <Resource Include="Coronation_Ring_square.jpg" />
+    <Resource Include="Gold_Brick.png" />
+    <Resource Include="hihi.png" />
+    <Resource Include="intricacy_ring.png" />
+    <Resource Include="Intricacy_Ring_square.jpg" />
+    <Resource Include="lineage_ring.png" />
+    <Resource Include="Lineage_Ring_square.jpg" />
+    <Resource Include="nobluechest.jpg" />
+    <Resource Include="no_blue_chest.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
