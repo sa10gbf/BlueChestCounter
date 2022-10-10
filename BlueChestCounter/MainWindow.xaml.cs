@@ -51,7 +51,7 @@ namespace BlueChestCounter
         float totalGoldBarPercentage;
         float totalBlueChestPercentage;
         float overallFight;
-        String lastGoldBarDate;
+        String lastGoldBarDate = "";
 
         public MainWindow()
         {
@@ -212,6 +212,56 @@ namespace BlueChestCounter
 
             Properties.Settings.Default.Save();
         }
+
+        private void validateUserEntry()
+        {
+            // Checks the value of the text.
+            
+            // Initializes the variables to pass to the MessageBox.Show method.
+            string message = "Are you sure to clear all data?";
+            string caption = "Confirmation";
+            MessageBoxButton buttons = MessageBoxButton.YesNo;
+            MessageBoxResult result;
+
+            // Displays the MessageBox.
+            result = MessageBox.Show(message, caption, buttons);
+            if (result == System.Windows.MessageBoxResult.Yes)
+            {
+                // Closes the parent form.
+                //GoldBarRecord.DataSource = null;
+                GoldBarRecord.Items.Clear();
+                goldBarRecords = new List<String>();
+                blueChestCount = 0;
+                blueChestPercentage = 0;
+                noBlueChestCount = 0;
+                coronationRingCount = 0;
+                coronationRingPercentage = 0;
+                lineageRingCount = 0;
+                lineageRingPercentage = 0;
+                intricacyRingCount = 0;
+                intricacyRingPercentage = 0;
+                hihiCount = 0;
+                hihiPercentage = 0;
+                totalFight = 0;
+                todaytotalfight = 0;
+                totalCoronationRingCount = 0;
+                totalLineageRingCount = 0;
+                totalIntricacyRingCount = 0;
+                totalGoldBarCount = 0;
+                totalBlueChestCount = 0;
+                totalCoronationRingPercentage = 0;
+                totalLineageRingPercentage = 0;
+                totalIntricacyRingPercentage = 0;
+                totalGoldBarPercentage = 0;
+                totalBlueChestPercentage = 0;
+                overallFight = 0;
+                lastGoldBarDate = "";
+                SaveSetting();
+                GetSetting();
+            }
+            
+        }
+
 
         private void noBlueChest_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -425,7 +475,7 @@ namespace BlueChestCounter
                 lastGoldBarDate = DateTime.Now.ToString("d");
                 var blueChestNumber = blueChestCount.ToString();
                 LastGoldBarDate.Content = lastGoldBarDate;
-                String record = lastGoldBarDate + "          " + blueChestNumber + " blue chest " + "          " + totalFight.ToString() + " battles";
+                String record = lastGoldBarDate + "\t" + blueChestNumber + " blue chest " + "\t" + totalFight.ToString() + " battles";
                 goldBarRecords.Add(record);
                 GoldBarRecord.Items.Clear();
 
@@ -494,36 +544,8 @@ namespace BlueChestCounter
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
-            //GoldBarRecord.DataSource = null;
-            GoldBarRecord.Items.Clear();
-            goldBarRecords = new List<String>();
-            blueChestCount = 0;
-            blueChestPercentage = 0;
-            noBlueChestCount = 0;
-            coronationRingCount = 0;
-            coronationRingPercentage = 0;
-            lineageRingCount = 0;
-            lineageRingPercentage = 0;
-            intricacyRingCount = 0;
-            intricacyRingPercentage = 0;
-            hihiCount = 0;
-            hihiPercentage = 0;
-            totalFight = 0;
-            todaytotalfight = 0;
-            totalCoronationRingCount = 0;
-            totalLineageRingCount = 0;
-            totalIntricacyRingCount = 0;
-            totalGoldBarCount = 0;
-            totalBlueChestCount = 0;
-            totalCoronationRingPercentage = 0;
-            totalLineageRingPercentage = 0;
-            totalIntricacyRingPercentage = 0;
-            totalGoldBarPercentage = 0;
-            totalBlueChestPercentage = 0;
-            overallFight = 0;
-            lastGoldBarDate = null;
-            SaveSetting();
-            GetSetting();
+            validateUserEntry();
+
         }
 
         private void noBlueChest_MouseRightButtonDown(object sender, MouseButtonEventArgs e)

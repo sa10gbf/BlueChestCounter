@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlueChestCounter"
         mc:Ignorable="d"
-        Title="BahaBlueCount" Height="317" Width="623" ResizeMode="CanMinimize" Activated="Window_Activated" Loaded="Window_Loaded">
+        Title="BahaBlueCount" Height="317" Width="623" ResizeMode="CanMinimize" Activated="Window_Activated" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
         <TabControl>
             <TabItem Header="Baha">
