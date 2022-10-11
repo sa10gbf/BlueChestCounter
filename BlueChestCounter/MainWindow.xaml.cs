@@ -71,7 +71,7 @@ namespace BlueChestCounter
                 foreach (var item in goldBarRecords)
                 {
                     const string reduceMultiSpace = @"[ ]{2,}";
-                    var line = Regex.Replace(item, reduceMultiSpace, " ");
+                    var line = Regex.Replace(item, reduceMultiSpace, "\t");
                     GoldBarRecord.Items.Insert(0, line);
                 }
 
