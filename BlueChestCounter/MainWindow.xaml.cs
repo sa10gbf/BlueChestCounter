@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -69,7 +70,9 @@ namespace BlueChestCounter
                 goldBarRecords = goldBarRecordsCollection.Cast<string>().ToList();
                 foreach (var item in goldBarRecords)
                 {
-                    GoldBarRecord.Items.Add(item);
+                    const string reduceMultiSpace = @"[ ]{2,}";
+                    var line = Regex.Replace(item, reduceMultiSpace, " ");
+                    GoldBarRecord.Items.Insert(0, line);
                 }
 
             }
