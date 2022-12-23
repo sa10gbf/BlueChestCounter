@@ -53,6 +53,7 @@ namespace BlueChestCounter
         float totalBlueChestPercentage;
         float overallFight;
         String lastGoldBarDate = "";
+        DateTime lastOpenDate = new DateTime();
 
         public MainWindow()
         {
@@ -70,9 +71,7 @@ namespace BlueChestCounter
                 goldBarRecords = goldBarRecordsCollection.Cast<string>().ToList();
                 foreach (var item in goldBarRecords)
                 {
-                    const string reduceMultiSpace = @"[ ]{2,}";
-                    var line = Regex.Replace(item, reduceMultiSpace, "\t");
-                    GoldBarRecord.Items.Insert(0, line);
+                    GoldBarRecord.Items.Insert(0, item);
                 }
 
             }
@@ -105,6 +104,7 @@ namespace BlueChestCounter
             totalGoldBarPercentage = Properties.Settings.Default.TotalGoldBarP;
             totalBlueChestPercentage = Properties.Settings.Default.TotalBlueChestP;
             overallFight = Properties.Settings.Default.OverallFight;
+            lastOpenDate = Properties.Settings.Default.LastOpenDate;
 
             Total.Content = totalFight;
             TodayFightCount.Content = todaytotalfight;
@@ -207,7 +207,7 @@ namespace BlueChestCounter
             Properties.Settings.Default.TotalGoldBarP = totalGoldBarPercentage;
             Properties.Settings.Default.TotalBlueChestP = totalBlueChestPercentage;
             Properties.Settings.Default.OverallFight = overallFight;
-
+            Properties.Settings.Default.LastOpenDate = lastOpenDate;
 
             StringCollection goldBarRecordsCollection = new StringCollection();
             goldBarRecordsCollection.AddRange(goldBarRecords.ToArray());
@@ -577,7 +577,39 @@ namespace BlueChestCounter
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            GetSetting();
             GetListSetting();
+            if (lastOpenDate == DateTime.MinValue)
+            {
+                lastOpenDate = DateTime.Today;
+            }
+            else if(lastOpenDate != DateTime.MinValue)
+            {
+                if((DateTime.Today).CompareTo(lastOpenDate) > 0)
+                {
+                    todaytotalfight = 0;
+                    lastOpenDate = DateTime.Today;
+                }
+            }
+            SaveSetting();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            GetSetting();
+            if (lastOpenDate == DateTime.MinValue)
+            {
+                lastOpenDate = DateTime.Today;
+            }
+            else if (lastOpenDate != DateTime.MinValue)
+            {
+                if ((DateTime.Today).CompareTo(lastOpenDate) > 0)
+                {
+                    todaytotalfight = 0;
+                    lastOpenDate = DateTime.Today;
+                }
+            }
+            SaveSetting();
         }
     }
 }
